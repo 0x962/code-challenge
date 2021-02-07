@@ -21,7 +21,6 @@ gem "jquery-rails"
 gem "bootstrap"
 gem 'haml-rails'
 gem "effective_datatables"
-gem "font-awesome-rails"
 gem "react-rails"
 gem "jsonapi-serializer"
 
