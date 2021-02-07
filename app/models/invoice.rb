@@ -1,4 +1,6 @@
-class Invoice < ApplicationRecord
+# frozen_string_literal: true
+
+class Invoice < ApplicationRecord # :nodoc:
 
   enum status: {
     draft: 0,
