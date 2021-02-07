@@ -1,0 +1,12 @@
+table {
+  font-size: 15px!important;
+
+  th {
+    padding: 5px!important;
+    font-size: 10px!important;
+  }
+
+  td:nth-child(1) {
+    font-weight: bold;
+  }
+}

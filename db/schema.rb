@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_29_120421) do
+ActiveRecord::Schema.define(version: 2021_02_07_100852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,16 @@ ActiveRecord::Schema.define(version: 2020_10_29_120421) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "business_owners", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "profile_image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "phone"
+  end
+
   create_table "companies", force: :cascade do |t|
     t.string "name"
     t.string "zip_code"
@@ -54,6 +64,43 @@ ActiveRecord::Schema.define(version: 2020_10_29_120421) do
     t.string "city"
     t.string "state"
     t.string "services", default: [], array: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string "line1"
+    t.string "line2"
+    t.bigint "business_owner_id"
+    t.string "twitter_id"
+    t.index ["business_owner_id"], name: "index_companies_on_business_owner_id"
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.bigint "company_id"
+    t.float "amount"
+    t.integer "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_invoices_on_company_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.bigint "company_id"
+    t.bigint "payout_method_id"
+    t.bigint "invoice_id"
+    t.float "amount"
+    t.integer "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_payments_on_company_id"
+    t.index ["invoice_id"], name: "index_payments_on_invoice_id"
+    t.index ["payout_method_id"], name: "index_payments_on_payout_method_id"
+  end
+
+  create_table "payout_methods", force: :cascade do |t|
+    t.integer "method_type"
+    t.bigint "company_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_payout_methods_on_company_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

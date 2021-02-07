@@ -15,6 +15,15 @@ gem "bootsnap",   "1.6.0", require: false
 
 gem "zip-codes", "0.2.1"
 
+# new gems used
+gem "pundit"
+gem "jquery-rails"
+gem "bootstrap"
+gem 'haml-rails'
+gem "effective_datatables"
+gem "font-awesome-rails"
+gem "react-rails"
+gem "jsonapi-serializer"
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]

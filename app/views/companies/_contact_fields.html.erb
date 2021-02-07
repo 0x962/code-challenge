@@ -1,0 +1,14 @@
+<div class="form-group" data-controller="clipboard">
+  <p>
+    <a data-action="clipboard#copy" class="clipboard-button pointer text-decoration-none text-dark d-inline"><i class="fa fa-clipboard"></i></a>
+    <a href="tel:<%= phone %>" class="text-dark"><%= phone || 'N/A' %></a>
+    <input type="hidden" value="<%= phone %>" data-target="clipboard.source" class="d-inline"/>
+    <a data-target="clipboard.notice" class="clipboard-button pointer d-none text-decoration-none text-dark"> copied</a>
+  </p>
+  <p>
+    <a data-action="clipboard#copy" class="clipboard-button pointer text-decoration-none text-dark d-inline"><i class="fa fa-clipboard"></i></a>
+    <a href="mailto:<%= email %>" class="text-dark"><%= truncate(email || 'N/A', length: 30) %></a>
+    <input type="hidden" value="<%= email %>" data-target="clipboard.source" class="d-inline"/>
+    <a data-target="clipboard.notice" class="clipboard-button pointer d-none text-decoration-none text-dark"> copied</a>
+  </p>
+</div>

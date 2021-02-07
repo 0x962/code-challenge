@@ -8,12 +8,17 @@
     <%= stylesheet_pack_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+    <!-- css icons -->
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css' rel='stylesheet'>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
 
   <body>
     <%= render 'shared/notices' %>
+
     <%= yield %>
+
     <div class="fixed-bottom bg-light">
     <div class="container py-3">
       <%= link_to "Home", root_path, class: "mr-5"  %>

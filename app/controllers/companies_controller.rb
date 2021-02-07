@@ -2,7 +2,7 @@ class CompaniesController < ApplicationController
   before_action :set_company, except: [:index, :create, :new]
 
   def index
-    @companies = Company.all
+    @datatable = CompaniesDatatable.new
   end
 
   def new
@@ -26,9 +26,9 @@ class CompaniesController < ApplicationController
 
   def update
     if @company.update(company_params)
-      redirect_to companies_path, notice: "Changes Saved"
+      redirect_to company_path, company: @company, notice: "Changes Saved"
     else
-      render :edit
+      render :edit, notice: "Could not save changes"
     end
   end
 
@@ -36,13 +36,18 @@ class CompaniesController < ApplicationController
     def company_params
       params.require(:company).permit(
         :name,
-        :legal_name,
         :description,
         :zip_code,
         :phone,
         :email,
-        :owner_id,
-        services: []
+        services: [],
+        business_owner_attributes: [
+          :id,
+          :_destroy,
+          :first_name,
+          :last_name,
+          :email
+        ]
       )
     end
 
